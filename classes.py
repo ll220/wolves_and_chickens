@@ -3,7 +3,6 @@
 # Also includes functions that determine whether or not state configurations are equal or not
 ######################################################################################################################################
 
-import threading, queue
 import copy
 
 ####################################################################
@@ -21,6 +20,9 @@ class bank:
         self.chickens = c
         self.wolves = w
         self.boat = b
+
+    def print(self):
+        print("Chickens: ", self.chickens, " Wolves: ", self.wolves, " Boat: ", self.boat)
 
 # Represents each state, contains a list that contains previous states as previous actions encoded with integers
 class gameState(bank): 
@@ -76,6 +78,18 @@ class gameState(bank):
                 if (self.rightBank.wolves >= 2 and (self.leftBank.chickens == 0 or (self.leftBank.wolves + 2 <= self.leftBank.chickens))): 
                     validActions[4] = True
         return validActions
+
+    def print(self):
+        print("Left -- ")
+        self.leftBank.print()
+        print("Right -- ")
+        self.rightBank.print()
+
+        print("Prev states:")
+        for i in (self.prevStates):
+            print(i)
+
+        print("\n")
 
 # Checks if two banks have equal values
 def checkBanksEqual(firstBank, secondBank):
