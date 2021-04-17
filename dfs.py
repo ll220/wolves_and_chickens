@@ -25,9 +25,10 @@ class dfsGame(classes.gameBasics):
 
 
 
-newGame = dfsGame(3, 3, 1, 0, 0, 3, 3, 1, 0, 0)
+newGame = dfsGame(0, 0, 0, 96, 94, 96, 94, 1, 0, 0)
 
 finalState, number = newGame.playGame()
 
 finalState.print()
 print("Expanded: ", number)
+print(len(finalState.prevStates))
