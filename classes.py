@@ -4,6 +4,7 @@
 ######################################################################################################################################
 
 import copy
+import threading, queue
 
 ####################################################################
 # Actions are encoded as: 
@@ -91,17 +92,11 @@ class gameState(bank):
 
         print("\n")
 
-# Checks if two banks have equal values
-def checkBanksEqual(firstBank, secondBank):
-    if (firstBank.chickens == secondBank.chickens and firstBank.wolves == secondBank.wolves and firstBank.boat == secondBank.boat):
-        return True
-    else:
-        return False
+class gameBasics (gameState): 
+    def __init__(self, lcs, lws, lbs, rcs, rws, lcg, lwg, lbg, rcg, rwg):
+        self.initialState = gameState(lcs, lws, lbs, rcs, rws)
+        self.goalState = gameState(lcg, lwg, lbg, rcg, rwg)
 
-# Checks if two states have equal configurations (disregards the list of previous actions)
-def checkStatesEqual(firstState, secondState):
-    if (checkBanksEqual(firstState.leftBank, secondState.leftBank) and checkBanksEqual(firstState.rightBank, secondState.rightBank)):
-        return True
-    else:
-        return False
+        self.added = [self.initialState]
+        self.expandedCount = 0
 
