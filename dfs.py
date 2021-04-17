@@ -2,11 +2,11 @@ import classes
 import functions
 import threading, queue
 
-class bfsGame(classes.gameBasics):
+class dfsGame(classes.gameBasics):
     def __init__(self, lcs, lws, lbs, rcs, rws, lcg, lwg, lbg, rcg, rwg):
         self.basics = classes.gameBasics(lcs, lws, lbs, rcs, rws, lcg, lwg, lbg, rcg, rwg)
 
-        self.frontier = queue.Queue()
+        self.frontier = queue.LifoQueue()
         self.frontier.put(self.basics.initialState)
 
 
@@ -25,10 +25,9 @@ class bfsGame(classes.gameBasics):
 
 
 
-newGame = bfsGame(3, 3, 1, 0, 0, 3, 3, 1, 0, 0)
+newGame = dfsGame(3, 3, 1, 0, 0, 3, 3, 1, 0, 0)
 
 finalState, number = newGame.playGame()
 
 finalState.print()
 print("Expanded: ", number)
-
