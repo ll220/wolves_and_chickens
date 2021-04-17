@@ -77,7 +77,7 @@ def createNewState(action, currentState):
     newState.prevStates.append(action)
     return newState
 
-def expandNode(added, frontier, currentState):
+def expandNode(added, frontier, currentState, goalState = None):
     validActions = currentState.checkValidSuccessors()
 
     if (validActions[0]):
@@ -85,34 +85,58 @@ def expandNode(added, frontier, currentState):
 
         if (checkNotExplored(added, newState)):
             added.append(newState)
-            frontier.put(newState)
+
+            if (goalState != None):
+                newHeuristic = abs(goalState.leftBank.chickens - newState.leftBank.chickens) + abs(goalState.rightBank.wolves - newState.rightBank.wolves) + 3 * len(newState.prevStates)
+                frontier.put((newHeuristic, newState))
+            else:
+                frontier.put(newState)
 
     if (validActions[1]):
         newState = createNewState(2, currentState)
 
         if (checkNotExplored(added, newState)):
             added.append(newState)
-            frontier.put(newState)
+
+            if (goalState != None):
+                newHeuristic = abs(goalState.leftBank.chickens - newState.leftBank.chickens) + abs(goalState.rightBank.wolves - newState.rightBank.wolves) + 3 * len(newState.prevStates)
+                frontier.put((newHeuristic, newState))
+            else:
+                frontier.put(newState)
 
     if (validActions[2]):
         newState = createNewState(3, currentState)
 
         if (checkNotExplored(added, newState)):
             added.append(newState)
-            frontier.put(newState)    
+
+            if (goalState != None):
+                newHeuristic = abs(goalState.leftBank.chickens - newState.leftBank.chickens) + abs(goalState.rightBank.wolves - newState.rightBank.wolves) + 3 * len(newState.prevStates)
+                frontier.put((newHeuristic, newState))
+            else:
+                frontier.put(newState)    
 
     if (validActions[3]):
         newState = createNewState(4, currentState)
 
         if (checkNotExplored(added, newState)):
             added.append(newState)
-            frontier.put(newState)  
-    
+            
+            if (goalState != None):
+                newHeuristic = abs(goalState.leftBank.chickens - newState.leftBank.chickens) + abs(goalState.rightBank.wolves - newState.rightBank.wolves) + 3 * len(newState.prevStates)
+                frontier.put((newHeuristic, newState))
+            else:
+                frontier.put(newState) 
+                    
     if (validActions[4]):
         newState = createNewState(5, currentState)
 
         if (checkNotExplored(added, newState)):
             added.append(newState)
-            frontier.put(newState)  
-
+            
+            if (goalState != None):
+                newHeuristic = abs(goalState.leftBank.chickens - newState.leftBank.chickens) + abs(goalState.rightBank.wolves - newState.rightBank.wolves) + 3 * len(newState.prevStates)
+                frontier.put((newHeuristic, newState))
+            else:
+                frontier.put(newState) 
     return added, frontier

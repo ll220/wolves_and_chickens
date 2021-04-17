@@ -32,6 +32,9 @@ class gameState(bank):
         self.rightBank = bank(c_right, w_right, not boat_left)
         self.prevStates = copy.deepcopy(prev)
 
+    def __lt__(self, other):
+        return False
+
     # Returns a list of five Booleans. Each of them represents actions: [1, 2, 3, 4, 5]. True indicates if the next valid and a successor can be generated via that action
     def checkValidSuccessors (self): 
         validActions = [False, False, False, False, False]

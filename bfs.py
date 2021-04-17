@@ -25,7 +25,7 @@ class bfsGame(classes.gameBasics):
 
 
 
-newGame = bfsGame(3, 3, 1, 0, 0, 3, 3, 1, 0, 0)
+newGame = bfsGame(96, 94, 1, 0, 0, 0, 0, 0, 96, 94)
 
 finalState, number = newGame.playGame()
 
