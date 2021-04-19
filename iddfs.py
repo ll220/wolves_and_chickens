@@ -39,10 +39,10 @@ class iddfsGame(classes.gameBasics):
                 return None
 
 
-newGame = iddfsGame(0, 0, 0, 13, 10, 13, 10, 1, 0, 0)
-result = newGame.playGame()
-if (result == None):
-    print(result)
-else:
-    result[0].print()
-    print("Expanded: ", result[1])
+# newGame = iddfsGame(0, 0, 0, 96, 94, 96, 94, 1, 0, 0)
+# result = newGame.playGame()
+# if (result == None):
+#     print(result)
+# else:
+#     result[0].print()
+#     print("Expanded: ", result[1])

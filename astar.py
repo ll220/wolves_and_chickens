@@ -19,14 +19,15 @@ class astarGame(classes.gameBasics):
 
             if (functions.checkStatesEqual(currentState, self.basics.goalState)):
                 return currentState, self.basics.expandedCount
-            else:        
+            else:       
+                 currentState.print() 
                  self.basics.expandedCount = self.basics.expandedCount + 1
                  self.basics.added, self.frontier = functions.expandNode(self.basics.added, self.frontier, currentState, self.basics.goalState)
         
         return None
 
-newGame = astarGame(96, 94, 1, 0, 0, 0, 0, 0, 96, 94)
-finalState, number = newGame.playGame()
+# newGame = astarGame(3, 3, 1, 0, 0, 0, 0, 0, 3, 3)
+# finalState, number = newGame.playGame()
 
-finalState.print()
-print("Expanded: ", number)
+# finalState.print()
+# print("Expanded: ", number)

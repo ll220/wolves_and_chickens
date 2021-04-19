@@ -25,10 +25,11 @@ class bfsGame(classes.gameBasics):
 
 
 
-newGame = bfsGame(96, 94, 1, 0, 0, 0, 0, 0, 96, 94)
+# newGame = bfsGame(96, 94, 1, 0, 0, 0, 0, 0, 96, 94)
 
-finalState, number = newGame.playGame()
+# finalState, number = newGame.playGame()
 
-finalState.print()
-print("Expanded: ", number)
+# finalState.print()
+# print("Expanded: ", number)
+# print(len(finalState.prevStates))
 
