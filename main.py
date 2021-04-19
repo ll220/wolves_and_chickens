@@ -9,7 +9,7 @@ import numpy as np
 
 
 # Takes arguments from the command line and reads in an initial state and a goal state from files. Does not have error checking 
-# in the cases where the file names do not exist. Also does not include error checking for if the initial states are valid or not. 
+# in the cases where the file names do not exist and the order of arguments. Also does not include error checking for if the initial states are valid or not. 
 # Prints the solution path to an output file whose name is designated by the user along with the type of search, the number of actions
 # performed on the states to reach the goal node, and the number of nodes expanded. 
 class totalGame():
