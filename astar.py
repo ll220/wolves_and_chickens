@@ -1,6 +1,6 @@
 import classes
 import functions 
-import threading, queue
+import Queue
 
 # Carries out a graph search astar search for the wolves and chickens game given an initial and a goal state
 # h(n) is the sum of the absolute value of the difference between the goal left bank's and the current state's left bank's chickens and wolves. 
@@ -10,7 +10,7 @@ class astarGame(classes.gameBasics):
     def __init__(self, lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg):
         self.basics = classes.gameBasics(lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg)
 
-        self.frontier = queue.PriorityQueue()   # Using a priority queue
+        self.frontier = Queue.PriorityQueue()   # Using a priority queue
 
         # Elements of the priority queue are tuples that are (f(n), state)
         self.initialHeuristic = abs(self.basics.goalState.leftBank.chickens - self.basics.initialState.leftBank.chickens) + abs(self.basics.goalState.rightBank.wolves - self.basics.initialState.rightBank.wolves)

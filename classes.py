@@ -4,7 +4,7 @@
 #############################################################################################################################################
 
 import copy
-import threading, queue
+import Queue
 
 ####################################################################
 # Actions are encoded as: 
@@ -23,8 +23,8 @@ class bank:
         self.boat = b
 
     # Prints out values from a bank including chickens, wolves, and boat
-    def print(self):
-        print("Chickens: ", self.chickens, " Wolves: ", self.wolves, " Boat: ", self.boat)
+    def bankPrint(self):
+       print("Chickens: ", self.chickens, " Wolves: ", self.wolves, " Boat: ", self.boat)
 
 # Represents each state, contains a list that contains previous states as previous actions encoded with integers
 class gameState(bank): 
@@ -86,11 +86,11 @@ class gameState(bank):
         return validActions
 
     # Prints out values from a state, including values from left and right banks and the list of previous states
-    def print(self):
+    def statePrint(self):
         print("Left -- ")
-        self.leftBank.print()
+        self.leftBank.bankPrint()
         print("Right -- ")
-        self.rightBank.print()
+        self.rightBank.bankPrint()
 
         print("Prev states:")
         for i in (self.prevStates):

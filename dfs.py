@@ -1,13 +1,13 @@
 import classes
 import functions
-import threading, queue
+import Queue
 
 # A class that carries out a depth first search of the wolves and chickens game given an initial state and a goal state
 class dfsGame(classes.gameBasics):
     def __init__(self, lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg):
         self.basics = classes.gameBasics(lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg)
 
-        self.frontier = queue.LifoQueue()   # Using a LIFO queue
+        self.frontier = Queue.LifoQueue()   # Using a LIFO queue
         self.frontier.put(self.basics.initialState)
 
     # Carries out playing of the game using a depth first search

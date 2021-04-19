@@ -1,6 +1,6 @@
 import classes
 import functions 
-import threading, queue
+import Queue
 
 # A class that carries out iterative deepening depth first search of a wolves and chickens game given an initial and a goal state
 # This search does not include a maxmimum depth cutoff in which the program terminates at for all games. It instead keeps track 
@@ -10,7 +10,7 @@ class iddfsGame(classes.gameBasics):
     def __init__(self, lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg):
         self.basics = classes.gameBasics(lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg)
 
-        self.frontier = queue.LifoQueue()   # Using a LIFO queue
+        self.frontier = Queue.LifoQueue()   # Using a LIFO queue
         self.frontier.put(self.basics.initialState)     # Add the first state to the frontier
         self.depthLimit = 0     # Keep track of the depth limit that continuously increments
 
@@ -39,7 +39,7 @@ class iddfsGame(classes.gameBasics):
                  self.basics.added, self.frontier = functions.expandNode(self.basics.added, self.frontier, currentState)
         
         # Clear the explored list for future searches
-        self.basics.added.clear()
+        self.basics.added = [self.basics.initialState]
         return None # Return None if a goal node is not found before encountering the depth limit
 
     # Carries out the playing of the iddfs

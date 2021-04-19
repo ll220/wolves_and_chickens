@@ -1,6 +1,6 @@
 import classes
 import copy
-import threading, queue
+import Queue
 
 ##############################################################################################################################################
 # Includes functions that reoccur in all searche types. Include functions that will expand nodes and add them to a frontier, 

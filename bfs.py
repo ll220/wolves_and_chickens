@@ -1,13 +1,13 @@
 import classes
 import functions
-import threading, queue
+import Queue
 
 # A class that carries out a breadth first search of the wolves and chickens game given an initial and goal state
 class bfsGame(classes.gameBasics):
     def __init__(self, lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg):
         self.basics = classes.gameBasics(lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg)
 
-        self.frontier = queue.Queue()   # Using a FIFO queue
+        self.frontier = Queue.Queue()   # Using a FIFO queue
         self.frontier.put(self.basics.initialState) # Put the initial state on the frontier
 
 
