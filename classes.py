@@ -1,7 +1,7 @@
-######################################################################################################################################
+#############################################################################################################################################
 # Includes classes for banks and states and functions that allows the user to determine valid actions based off of state configuration 
-# Also includes functions that determine whether or not state configurations are equal or not
-######################################################################################################################################
+# Also includes a class for elements that are reoccuring in all search types, ie the initial state, goal state, explored nodes and expanded count
+#############################################################################################################################################
 
 import copy
 import threading, queue
@@ -22,16 +22,18 @@ class bank:
         self.wolves = w
         self.boat = b
 
+    # Prints out values from a bank including chickens, wolves, and boat
     def print(self):
         print("Chickens: ", self.chickens, " Wolves: ", self.wolves, " Boat: ", self.boat)
 
 # Represents each state, contains a list that contains previous states as previous actions encoded with integers
 class gameState(bank): 
-    def __init__(self, c_left, w_left, boat_left, c_right, w_right, prev = []): 
+    def __init__(self, c_left, w_left, boat_left, c_right, w_right, boat_right, prev = []): 
         self.leftBank = bank(c_left, w_left, boat_left)
-        self.rightBank = bank(c_right, w_right, not boat_left)
+        self.rightBank = bank(c_right, w_right, boat_right)
         self.prevStates = copy.deepcopy(prev)
 
+    # For astar search. This is used for comparison if a new node has an equal heuristic to a node in the priority queue. Favors the node added first for FIFO functionality
     def __lt__(self, other):
         return False
 
@@ -83,6 +85,7 @@ class gameState(bank):
                     validActions[4] = True
         return validActions
 
+    # Prints out values from a state, including values from left and right banks and the list of previous states
     def print(self):
         print("Left -- ")
         self.leftBank.print()
@@ -95,10 +98,11 @@ class gameState(bank):
 
         print("\n")
 
+# A class that contains elements that occur in every search type, such as initial state, goal state, and explored list and expanded count
 class gameBasics (gameState): 
-    def __init__(self, lcs, lws, lbs, rcs, rws, lcg, lwg, lbg, rcg, rwg):
-        self.initialState = gameState(lcs, lws, lbs, rcs, rws)
-        self.goalState = gameState(lcg, lwg, lbg, rcg, rwg)
+    def __init__(self, lcs, lws, lbs, rcs, rws, rbs, lcg, lwg, lbg, rcg, rwg, rbg):
+        self.initialState = gameState(lcs, lws, lbs, rcs, rws, rbs)
+        self.goalState = gameState(lcg, lwg, lbg, rcg, rwg, rbg)
 
         self.added = [self.initialState]
         self.expandedCount = 0
